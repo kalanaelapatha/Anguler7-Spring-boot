@@ -1,0 +1,11 @@
+<small *ngIf='invalidLogin'>{{errorMeg}}</small>
+<div class="row">
+    <div>
+        User Name : <input type="text" name="username" [(ngModel)]="username">
+        Password : <input type="password" name="password" [(ngModel)]="password">
+    </div>
+    <div>
+        <button (click)=registerHandle()>Submit</button>
+    </div>
+
+</div>
