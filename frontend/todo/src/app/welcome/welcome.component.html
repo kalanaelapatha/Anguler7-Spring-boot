@@ -1,14 +1,40 @@
 <br><br>
+
+<div class="container" *ngIf="errorMessageFromService">
+
+    <h2>Your customized Welcome Message</h2>
+    {{errorMessageFromService}}
+</div>
+
 <div class="container"><h1 style="text-align:center">Welcome !!!</h1></div>
+
 <div class="container">
 Welcome {{name}}. You can Manage your own Todos <a routerLink="/todos"> Here </a>
+</div>
 
 
 <div class="container">
 
     Click here to get a customized Welcome Message
-    <button class="btn btn-success" (click)="getWelcomeMessage()">Get Welcome Message</button>
- </div>
+    <div class="form-group row">
+
+        <div  class="col-md-4">
+            <button class="btn btn-success" (click)="getWelcomeMessage()">Get Welcome Message</button>
+        
+        </div >
+        <div  class="col-md-2"> </div>
+        
+        <div class="col-md-4">
+            <button class="btn btn-primary" (click)="getWelcomeMessageWithPathVariable()">Get Welcome Message with Path Variable</button>
     
 
-</div>
+        </div>
+        
+
+    </div>
+   </div>
+<div class="container" *ngIf="welcomeMessageFromService">
+
+   <h2>Your customized Welcome Message</h2>
+   {{welcomeMessageFromService}}
+ </div>

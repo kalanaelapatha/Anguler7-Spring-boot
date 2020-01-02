@@ -1,4 +1,4 @@
-package com.API.REST.spring_backend;
+package com.API.REST.spring_backend.helloworld;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -20,8 +20,10 @@ public class HelloWorldController {
 	// hello-world-bean
 	@GetMapping(path = "/hello-world-bean")
 	public HelloWorldBean helloworldbean() {
+		
+		//throw new RuntimeException("Some Error has Happened ! Contact Suppot at ***---***");
 
-		return new HelloWorldBean("Hello world", 23);
+		return new HelloWorldBean("Hello world- Changed", 23);
 	}
 
 	@GetMapping(path = "/hello-world/path-variable/{name}")

@@ -1,4 +1,4 @@
-package com.API.REST.spring_backend;
+package com.API.REST.spring_backend.helloworld;
 
 public class HelloWorldBean {
 
