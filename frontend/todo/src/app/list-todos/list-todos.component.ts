@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoDataService } from '../service/data/todo-data.service';
 
 
 export class Todos{
@@ -22,21 +23,30 @@ export class Todos{
 export class ListTodosComponent implements OnInit {
 
 
-  todos = [
-    new Todos(1,'Pro with Angular',false, new Date()),
-    new Todos(2,'Pro with Spirng Boot',false, new Date()),
-    new Todos(3,'I"am BlockChin enthuastic',false, new Date()),
+  todos: Todos[]
+    //  = [
+    // new Todos(1,'Pro with Angular',false, new Date()),
+    // new Todos(2,'Pro with Spirng Boot',false, new Date()),
+    // new Todos(3,'I"am BlockChin enthuastic',false, new Date()),
         
-  ]
+        //]
 
   // todo = {
   //   id: 1,
   //   description: 'welcome'
   // }
 
-  constructor() { }
+  constructor( private todoService:TodoDataService) { }
 
   ngOnInit() {
+
+    this.todoService.retrieveAllTodos('kalana').subscribe(
+        response =>{
+          console.log("list=of-todos");
+          this.todos = response;
+        } 
+
+    )
   }
 
 }
