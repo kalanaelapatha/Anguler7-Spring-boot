@@ -24,4 +24,9 @@ export class TodoDataService {
   }
 
 
+  updateTodo(username,id,todo){
+    return this.http.put(`http://localhost:8080/users/${username}/todos/${id}`,todo);
+  }
+
+
 }
