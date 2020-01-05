@@ -1,0 +1,21 @@
+<br><br>
+
+<H1 style="text-align: center;">Todo</H1>
+
+<div class="container">
+    <fieldset class="form-group">
+        <label>Description</label>
+        <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required="required">
+           
+
+    </fieldset>
+
+    <fieldset class="form-group">
+        <label>Target Date</label>
+         <!-- Below input fild used a "Pips" to change the date format  -->
+        <input type="date" [ngModel]="todo.targetDate |date:'yyyy-MM-dd'" (ngModelchange)="todo.targetDate = $event" class="form-control" name="targetDate" required="required">
+        <!-- what has done here is, ngmodel is split into thire tow parts which are property binding and event binding -->
+    </fieldset> 
+
+    <button class="btn btn-success" (click)="saveTodo()">Save</button>
+</div>

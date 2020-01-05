@@ -1,23 +1,29 @@
 
 <div class="container">
+    <div class="alert alert-success" *ngIf= 'message'>{{message}}</div>
 <h1>My Todo's</h1>
 <br><br>
 <table class="table">
 <thead>
     <tr>
         
+
         <th>Description</th> 
         <th>Target Date</th>
         <th>is Completed ?</th>     
+        <th>Edit</th>
+        <th><fa name="cog"></fa>Delete</th>
     </tr>
 </thead>
 <tbody>
 </tbody>
     <tr *ngFor = "let todo of todos">
         
-        <th>{{todo.description}}</th>  
-        <th>{{todo.targetDate | date}}</th> 
-        <th>{{todo.done}}</th>      
+        <td>{{todo.description}}</td>  
+        <td>{{todo.targetDate | date}}</td> 
+        <td>{{todo.done}}</td>    
+        <td> <button (click) ="editTodo(todo.id)" class="btn btn-success">Edit</button></td>
+        <td> <button  (click) =" deleteTodo(todo.id)" class="btn btn-warning">Delete</button></td>  
     </tr>
 
 

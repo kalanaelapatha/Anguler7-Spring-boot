@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { TodoDataService } from '../service/data/todo-data.service';
+import { Router } from '@angular/router';
 
 
-export class Todos{
-    constructor(
-      public id : number,
-      public description: string,
-      public done: boolean,
-      public targetDate: Date
+export class Todos {
+  constructor(
+    public id: number,
+    public description: string,
+    public done: boolean,
+    public targetDate: Date
 
-    ){
+  ) {
 
-    }
-  
+  }
+
 }
 
 @Component({
@@ -24,29 +25,43 @@ export class ListTodosComponent implements OnInit {
 
 
   todos: Todos[]
-    //  = [
-    // new Todos(1,'Pro with Angular',false, new Date()),
-    // new Todos(2,'Pro with Spirng Boot',false, new Date()),
-    // new Todos(3,'I"am BlockChin enthuastic',false, new Date()),
-        
-        //]
+  message: string
+ 
 
-  // todo = {
-  //   id: 1,
-  //   description: 'welcome'
-  // }
-
-  constructor( private todoService:TodoDataService) { }
+  constructor(
+    private todoService: TodoDataService,
+    private router: Router//if we want to go to another component we have to use that
+    ) { }
 
   ngOnInit() {
+    this.refreshTodo(); //it is used because we need to auto refresh after delete perticuler todo otherwise we need to manual refresh the page!!!
 
+  }
+  refreshTodo() {
     this.todoService.retrieveAllTodos('kalana').subscribe(
-        response =>{
-          console.log("list=of-todos");
-          this.todos = response;
-        } 
-
+      response => {
+        console.log("list=of-todos");
+        this.todos = response;
+      }
     )
   }
+
+  deleteTodo(id) {
+    console.log(`Todo is deleted ${id}`)
+    this.todoService.deleteTodo('kalana', id).subscribe(
+      responce => {
+        console.log(responce);
+        this.message = `Delete of Todo  ${id}  Successfull !!`
+        this.refreshTodo();
+      }
+    )
+  }
+
+
+  editTodo(id) {
+    console.log(`Todo is Updated ${id}`)
+    this.router.navigate(['todos',id]);
+     }
+
 
 }

@@ -14,6 +14,8 @@ import { ListTodosComponent } from './list-todos/list-todos.component';
 import { LoginComponent} from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +27,16 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     ListTodosComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    TodoComponent,
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

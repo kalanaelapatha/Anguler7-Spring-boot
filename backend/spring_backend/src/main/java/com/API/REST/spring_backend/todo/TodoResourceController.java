@@ -5,11 +5,14 @@ import java.util.List;
 import javax.xml.ws.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.API.REST.spring_backend.todo.Todo;
@@ -34,7 +37,7 @@ public class TodoResourceController {
 
 		// ResponseEntity help us to build specific request with specific status,That's
 		// why we used it
-		Todo todo = todoService.delteById(id); // return related todo
+		Todo todo = todoService.deleteById(id); // return related todo
 		if (todo != null) {
 			return ResponseEntity.noContent().build();// return no Content back that why we used ResponceEntity as to
 														// return specific content
@@ -42,6 +45,20 @@ public class TodoResourceController {
 
 		return ResponseEntity.notFound().build();// 404 Error
 
+	}
+
+	// GET/users/{username}/todos
+	@GetMapping("/users/{username}/todos/{id}")
+	public Todo getTodo(@PathVariable String username, @PathVariable long id) {
+		return todoService.findById(id);
+	}
+
+	// PUT
+	 @PutMapping("users/{username}/todos/{id}")
+	public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody Todo todo ) {
+		
+			Todo todoUpdated =todoService.save(todo); 	
+		return new ResponseEntity<Todo>(todo,HttpStatus.OK);
 	}
 
 }

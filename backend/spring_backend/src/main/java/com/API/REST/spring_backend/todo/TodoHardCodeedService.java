@@ -27,7 +27,7 @@ public class TodoHardCodeedService {
 		return todos;
 	}
 
-	public Todo delteById(long id) {
+	public Todo deleteById(long id) {
 		Todo todo = findById(id);
 		if (todo == null)
 			return null;
@@ -45,4 +45,23 @@ public class TodoHardCodeedService {
 		}
 		return null;
 	}
+	
+	
+	//Update todo method
+	
+	public Todo save(Todo todo) {
+		
+		if(todo.getId()== -1) {
+			
+			todo.setId(++idCounter);
+			todos.add(todo);
+		}else {
+			deleteById(todo.getId());
+			todos.add(todo);//needed to want to update will delete and insert one with same id
+			 
+		}
+		
+		return todo;
+	}
+	 
 }
