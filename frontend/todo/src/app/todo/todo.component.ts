@@ -23,24 +23,41 @@ export class TodoComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.todo = new Todos(1, '', false, new Date())
-    this.todoService.retrieveTodo('kalana', this.id).subscribe(
+    this.todo = new Todos(this.id, '', false, new Date())
+    if (this.id != -1) {
+      this.todoService.retrieveTodo('kalana', this.id).subscribe(
 
-      data => this.todo = data
-    )
+        data => this.todo = data
+      )
+    }
   }
 
 
-  saveTodo() {
+  updateTodo() {
 
-    this.todoService.updateTodo('kalana', this.id, this.todo).subscribe(
+    if (this.id === -1) {
+    //this is the one methos which is used to create a todo or update a todo
+      this.todoService.createTodo('kalana',this.todo)
+      .subscribe(
+        data => {
+          console.log(data)
+          this.router.navigate(['todos']) //to reirect the perticuler page
+        }
+      )
+//update part
+    } else {
+      this.todoService.updateTodo('kalana', this.id, this.todo)
+        .subscribe(
+          data => {
+            console.log(data)
+            this.router.navigate(['todos']) //to reirect the perticuler page
+          }
+        )
 
-      data => {
-        console.log(data)
-        this.router.navigate(['todos'])
-      }
-    )
+    }
 
   }
+
+
 
 } 

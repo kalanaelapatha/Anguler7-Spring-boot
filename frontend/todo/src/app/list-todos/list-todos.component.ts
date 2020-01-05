@@ -26,12 +26,12 @@ export class ListTodosComponent implements OnInit {
 
   todos: Todos[]
   message: string
- 
+
 
   constructor(
     private todoService: TodoDataService,
     private router: Router//if we want to go to another component we have to use that
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.refreshTodo(); //it is used because we need to auto refresh after delete perticuler todo otherwise we need to manual refresh the page!!!
@@ -60,8 +60,12 @@ export class ListTodosComponent implements OnInit {
 
   editTodo(id) {
     console.log(`Todo is Updated ${id}`)
-    this.router.navigate(['todos',id]);
-     }
+    this.router.navigate(['todos', id]);
+  }
+
+  addTodo() {
+    this.router.navigate(['todos', -1])
+  }
 
 
 }
