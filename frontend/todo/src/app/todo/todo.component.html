@@ -3,19 +3,31 @@
 <H1 style="text-align: center;">Todo</H1>
 
 <div class="container">
-    <fieldset class="form-group">
-        <label>Description</label>
-        <input type="text" [(ngModel)]="todo.description" class="form-control" name="description" required="required">
-           
+    <!-- no need user form tag when send dat to server but if you want user form typical things you have to user form tag insted -->
+    <!-- #todoForm is the validate temp variable to check wether data is availabe or not in feilds -->
 
-    </fieldset>
+    <!-- <div class="alert alert-warning"  *ngIf="todoForm.dirty && todoForm.invalid">Please Enter the Valid Details</div> -->
+    <div class="alert alert-warning"  *ngIf="todoForm.dirty && description.invalid">Enter atlest Five Chater Details</div>
+    <div class="alert alert-warning"  *ngIf="todoForm.dirty && targetDate.invalid">Please Enter the Valid Date</div>
 
-    <fieldset class="form-group">
-        <label>Target Date</label>
-         <!-- Below input fild used a "Pips" to change the date format  -->
-        <input type="date" [ngModel]="todo.targetDate | date:'yyyy-MM-dd' " (ngModelChange)="todo.targetDate = $event" class="form-control" name="targetDate" required="required">
-        <!-- what has done here is, ngmodel is split into thire tow parts which are property binding and event binding -->
-    </fieldset> 
+    <form (ngSubmit)=" !todoForm.invalid && updateTodo()"  #todoForm="ngForm">
+        <fieldset class="form-group">
+            <label>Description</label>
+            <input type="text" [(ngModel)]="todo.description" class="form-control" name="description"
+                required="required" minlength="5" #description="ngModel">
 
-    <button class="btn btn-success" (click)="updateTodo()">Submit</button>
+
+        </fieldset>
+
+        <fieldset class="form-group">
+            <label>Target Date</label>
+            <!-- Below input fild used a "Pips" to change the date format  -->
+            <input type="date" [ngModel]="todo.targetDate | date:'yyyy-MM-dd' "
+                (ngModelChange)="todo.targetDate = $event" class="form-control" name="targetDate" required="required" #targetDate="ngModel">
+            <!-- what has done here is, ngmodel is split into thire tow parts which are property binding and event binding -->
+        </fieldset>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+
 </div>

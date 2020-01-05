@@ -28,7 +28,9 @@ export class TodoComponent implements OnInit {
       this.todoService.retrieveTodo('kalana', this.id).subscribe(
 
         data => this.todo = data
+
       )
+
     }
   }
 
@@ -36,15 +38,15 @@ export class TodoComponent implements OnInit {
   updateTodo() {
 
     if (this.id === -1) {
-    //this is the one methos which is used to create a todo or update a todo
-      this.todoService.createTodo('kalana',this.todo)
-      .subscribe(
-        data => {
-          console.log(data)
-          this.router.navigate(['todos']) //to reirect the perticuler page
-        }
-      )
-//update part
+      //this is the one methos which is used to create a todo or update a todo
+      this.todoService.createTodo('kalana', this.todo)
+        .subscribe(
+          data => {
+            console.log(data)
+            this.router.navigate(['todos']) //to reirect the perticuler page
+          }
+        )
+      //update part
     } else {
       this.todoService.updateTodo('kalana', this.id, this.todo)
         .subscribe(
